@@ -2,13 +2,18 @@
 
 require_once __DIR__ . './models/Product.php';
 require_once __DIR__ . './models/Cibo.php';
+require_once __DIR__ . './models/Category.php';
+require_once __DIR__ . './models/Cuccia.php';
 
 
-$products = [
-    new Product('aaaaa', 'cane', 'cibo','https://www.canibo.it/wp-content/uploads/2017/07/dog-food-300x200.jpg'),
-    new Cibo('felix','cibo buonissimo per il tuo fedele amico a 4 zampe'    ,  '50kg', 'carota', 12.50),
 
-]
+  $prodottiCibo=  new Cibo('Bontà', 'cane', new Category( 'cibo','https://www.canibo.it/wp-content/uploads/2017/07/dog-food-300x200.jpg'), 'Fwelix', 'cibo migliore del mondo per il tuo amico a 4 zampe', '20kg', 'manzo', 12.99 );
+
+  $prodottoCuccia = new Cuccia('Sicur', 'gatto', 
+  new Category('Cuccia', 'https://www.keblog.it/wp-content/uploads/2017/01/cuccia-gatto-feltro-colorata-yuliya-kosata-02.jpg'),'CATBAD', 'la cuccia che fa viaggiare il tuo gatto','50kg','50x70', 45,99 );
+  
+  
+$products=[$prodottiCibo,$prodottoCuccia]
 
 
 ?>
@@ -38,11 +43,29 @@ $products = [
             <section class="row">
                 <?php foreach ($products as $product) { ?>
                     <div class="col-3">
-                    <div class="card" >
-                        <img src="<?php echo $product->img ?>" class="card-img-top" alt="...">
+                    <div class="card h-100" >
+                        <img src="<?php echo $product->category->img ?>" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">adatto per: <?php echo $product->animalCategory ?></h5>
-                            <p class="card-text"><?php echo $product->description ?> </p>
+                          
+                            <h3><?php echo $product->name ?> </h3>   
+                            <h5 class="card-title">adatto per: <?php echo $product->category->animalCategory ?></h5>   
+                            <h5>prodotto:<?php echo $product->tipo ?> </h5> 
+                            <h5> <?php echo $product->nameBrand ?></h5>
+                             
+                            <?php if ($product instanceof Cibo || $product instanceof Cuccia) { ?>
+                                <ul>
+                                    <?php if ($product instanceof Cibo) { ?>
+                                        <li>Peso: <?php echo $product->weight ?></li>
+                                        <li>Gusto: <?php echo $product->taste ?></li>
+                                    <?php } elseif ($product instanceof Cuccia) { ?>
+                                        <li>Dimensioni: <?php echo $product->dimensione ?></li>
+                                        <li>prezzo: <?php echo $product->price ?></li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+
+
+
                             <a href="#" class="btn btn-primary text-uppercase">compra</a>
                         </div>
                     </div>
