@@ -89,7 +89,8 @@ $products = [$prodottiCibo, $prodottoCuccia, $productGame, $prodottiCibo, $prodo
                                             </li>
                                         <?php } else { ?>
                                             <li>
-                                                <?php echo  $chiave;  ?> : <?php echo $valore; ?>
+                                               
+                                                <?php echo $chiave === 'price' ? $valore . ' &#8364;' : $valore; ?>
                                             </li>
 
 
