@@ -1,7 +1,9 @@
 <?php
 
-require_once __DIR__ . '/Cibo.php';
+require_once __DIR__ . '/Cuccia.php';
 require_once __DIR__ . '/Category.php';
+require_once __DIR__ . '/Cibo.php';
+require_once __DIR__ . '/Gioco.php';
 
 
 class Product{

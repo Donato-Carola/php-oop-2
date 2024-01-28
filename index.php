@@ -4,16 +4,20 @@ require_once __DIR__ . './models/Product.php';
 require_once __DIR__ . './models/Cibo.php';
 require_once __DIR__ . './models/Category.php';
 require_once __DIR__ . './models/Cuccia.php';
+require_once __DIR__ . './models/Gioco.php';
 
 
 
-  $prodottiCibo=  new Cibo('Bontà', 'cane', new Category( 'cibo','https://www.canibo.it/wp-content/uploads/2017/07/dog-food-300x200.jpg'), 'Fwelix', 'cibo migliore del mondo per il tuo amico a 4 zampe', '20kg', 'manzo', 12.99 );
+  $prodottiCibo=  new Cibo(' Bontà', ' cibo', new Category( 'dog','https://www.canibo.it/wp-content/uploads/2017/07/dog-food-300x200.jpg'), ' Fwelix', 'cibo migliore del mondo per il tuo amico a 4 zampe', '20kg', 'manzo', 12.99 );
 
-  $prodottoCuccia = new Cuccia('Sicur', 'gatto', 
-  new Category('Cuccia', 'https://www.keblog.it/wp-content/uploads/2017/01/cuccia-gatto-feltro-colorata-yuliya-kosata-02.jpg'),'CATBAD', 'la cuccia che fa viaggiare il tuo gatto','50kg','50x70', 45,99 );
+  $prodottoCuccia = new Cuccia(' Sicur', ' cuccia', 
+  new Category( ' Cat', 'https://www.keblog.it/wp-content/uploads/2017/01/cuccia-gatto-feltro-colorata-yuliya-kosata-02.jpg'),'CATBAD', 'la cuccia che fa viaggiare il tuo gatto','50kg','50x70', 45,99 );
   
-  
-$products=[$prodottiCibo,$prodottoCuccia]
+  $productGame = new Gioco('GameDog', ' Gioco', new Category( 'dog','https://m.media-amazon.com/images/I/71cE9M+kziL._AC_UF1000,1000_QL80_.jpg'),'talking dog','da oggi il tuo cane parlerà grazie a questo dispositivo',
+                           '4kg','interattivo',50,00);
+
+
+$products=[$prodottiCibo,$prodottoCuccia,$productGame]
 
 
 ?>
@@ -52,7 +56,7 @@ $products=[$prodottiCibo,$prodottoCuccia]
                             <h5>prodotto:<?php echo $product->tipo ?> </h5> 
                             <h5> <?php echo $product->nameBrand ?></h5>
                              
-                            <?php if ($product instanceof Cibo || $product instanceof Cuccia) { ?>
+                            <?php if ($product instanceof Cibo || $product instanceof Cuccia || $product instanceof Gioco) { ?>
                                 <ul>
                                     <?php if ($product instanceof Cibo) { ?>
                                         <li>Peso: <?php echo $product->weight ?></li>
@@ -60,7 +64,10 @@ $products=[$prodottiCibo,$prodottoCuccia]
                                     <?php } elseif ($product instanceof Cuccia) { ?>
                                         <li>Dimensioni: <?php echo $product->dimensione ?></li>
                                         <li>prezzo: <?php echo $product->price ?></li>
-                                    <?php } ?>
+                                    <?php }elseif ($product instanceof Gioco) { ?>
+                                        <li>descrizione: <?php echo $product->description ?></li>
+                                        <li>prezzo: <?php echo $product->price ?></li>
+                                        <?php } ?>
                                 </ul>
                             <?php } ?>
 
